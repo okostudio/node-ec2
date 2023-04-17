@@ -1,0 +1,117 @@
+/**
+ * /* https://meyerweb.com/eric/tools/css/reset/  v2.0 | 20110126 License: none (public domain)
+ *
+ * @format
+ */
+
+/* prettier-ignore */
+a,body,canvas,div,h1,h2,h3,h4,h5,h6,html,i,iframe,img,li,p,span,strong,sup,ul,video {margin: 0; padding: 0; border: 0; font: inherit; vertical-align: baseline;}
+:focus {
+  outline: none;
+}
+::-moz-focus-inner {
+  border: 0;
+}
+
+* {
+  font-variant-ligatures: none;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+body,
+* {
+  vertical-align: baseline;
+  border: 0 none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+.IE-detected * {
+  -webkit-font-smoothing: initial;
+  -moz-osx-font-smoothing: initial;
+}
+.IE-detected .htmlMem {
+  transform: rotate(-0.01deg);
+}
+
+.clickthrough {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 0, 0, 0.5);
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1000;
+  -moz-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.banner,
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #000;
+  overflow: hidden;
+  display: none;
+  box-sizing: border-box;
+}
+.banner::after {
+  top: 0;
+  left: 0;
+  border: 1px solid #655;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  content: " ";
+  box-sizing: border-box;
+}
+.banner,
+.banner::after,
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.GUIDE,
+.absolute,
+.background,
+.frame,
+.htmlMem {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+.frame {
+  top: 0;
+}
+.GUIDE {
+  opacity: 0.4;
+  display: none;
+}
+.htmlMem .frame {
+  z-index: 20;
+}
+.common {
+  z-index: 30;
+}
+sup {
+  font-size: 60%;
+  vertical-align: top;
+  letter-spacing: -5px;
+}
+

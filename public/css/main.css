@@ -56,6 +56,11 @@ button{
   background-color: #594;
 }
 
+.banner{
+  display: inline-block;
+  margin: 0 20px 20px 0;
+}
+
 .banner iframe{
   outline: 0;
   border: 0;

@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 app.use(express.static(path.join(__dirname, 'public')));
+const port = 3000;
 
 app.get('*', (req, res) => {
   const requestedPath = path.join(__dirname, 'public', req.path);
@@ -53,9 +54,9 @@ app.get('*', (req, res) => {
             html += `<div class="item banner">
                       <div class="label">${file}</div>
                       <iframe width="${width}" height="${height}" src="${req.path}${file}/index.html"></iframe>
-                      <div>
+                      <!--<div>
                         <button>REPLAY</button>
-                      </div>
+                      </div>-->
                     </div>`;
           } 
         } else {
@@ -86,6 +87,8 @@ app.get('*', (req, res) => {
   });
 });
 
-app.listen(3001, () => {
-  console.log('Server listening on port 3001');
+
+
+app.listen(port, () => {
+  console.log('Server listening on port ', port);
 });
