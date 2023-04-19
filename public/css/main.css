@@ -10,16 +10,39 @@ body{
 }
 
 .header{
-  font-size: 14px;
+  font-size: 24px;
 
-  background-color: #334;
+  background-color: #000;
   color: #fafafa;
 
-  padding: 10px 30px;
+  padding: 15px 30px;
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.header div{
+  display: flex;
+  height: 2.5vw;
+  min-height: 20px;
+  max-height: 35px;
+}
+.header .right{
+  align-items: end;
+  justify-content: end;
+}
+
+/* logos */
+.header div img{
+  display: inline-block;
+  height: 100%;
+}
+
+.header .left img:nth-child(2){
+  margin-left: 15px;
+  padding-left: 15px;
+  border-left: 1px solid rgba(255,255,255,0.5);
 }
 
 .wrapper{
@@ -37,10 +60,19 @@ body{
   margin-bottom: 10px;
 }
 
+.button-holder{
+  margin-bottom: 20px;
+}
+
+.button-holder a{
+  display: inline-block;
+  margin-right: 5px;
+}
+
 .button,
 button{
   display: inline-block;
-  padding: 10px 30px;
+  padding: 5px 10px;
   background-color: #352;
   color: #fafafa;
   text-decoration: none;

@@ -5,9 +5,20 @@ const fs = require('fs');
 app.use(express.static(path.join(__dirname, 'public')));
 const port = 3000;
 
+const getPartnerLogo = (_path)=>{
+  console.log("path:", _path)
+  if(_path.toLowerCase().indexOf("/toyota/") > -1){
+    return `<img src="/css/logos/toyota.svg" class="" />`
+  } else if(_path.toLowerCase().indexOf("/nbn/") > -1){
+    return `<img src="/css/logos/nbn.svg" class="" />`
+  } else {
+    return "";
+  }
+}
+
 app.get('*', (req, res) => {
   const requestedPath = path.join(__dirname, 'public', req.path);
-
+  
   fs.readdir(requestedPath, (err, files) => {
     if (err) {
 			res.status(404).send('Not Found');
@@ -20,16 +31,21 @@ app.get('*', (req, res) => {
                     <link rel="stylesheet" type="text/css" href="/css/main.css">
                   </head>
                   <div class="header">
-                    <div class="left">Banner Preview Server</div>
-                    <div class="right">v1.01</div>
+                    <div class="left">
+                      <img src="/css/logos/dc.svg" />
+                      ${getPartnerLogo(req.path)}
+                    </div>
+                    <div class="right">
+                      <img src="/css/logos/dentsucreative.svg" />
+                    </div>
                   </div>
                   <div class="container wrapper">`;
-        
+      let buttons = "";
+      let banners = "";
       if(req.path !== "/"){
-        html += `<div class="item button-holder">
-          <a class="button back" href="${req.path}../">back</a>
-        </div>`
+        buttons += `<a class="button back" href="${req.path}../">back</a>`
       }
+
       // Loop through twice, to keep folders at the top.
       files.forEach(file => {
         const filePath = path.join(requestedPath, file);
@@ -37,9 +53,7 @@ app.get('*', (req, res) => {
         if (isDirectory) {
           const isBanner = file.match(/(\d+)x(\d+)/);
           if (!isBanner) {
-            html += `<div class="item button-holder">
-              <a class="button folder" href="${req.path}${file}">${file}</a>
-            </div>`;
+            buttons += `<a class="button folder" href="${req.path}${file}">${file}</a>`;
           }
         } 
       });
@@ -51,7 +65,7 @@ app.get('*', (req, res) => {
           if (isBanner) {
             let width = isBanner[1];
             let height = isBanner[2];
-            html += `<div class="item banner">
+            banners += `<div class="item banner">
                       <div class="label">${file}</div>
                       <iframe width="${width}" height="${height}" src="${req.path}${file}/index.html"></iframe>
                       <!--<div>
@@ -62,12 +76,12 @@ app.get('*', (req, res) => {
         } else {
           const fileExt = path.extname(filePath);
           if (fileExt === '.jpg' || fileExt === '.png' || fileExt === '.gif') {
-            html += `<div class="item media image">
+            banners += `<div class="item media image">
               <div class="label">${file}</div>
               <img src="${req.path}${file}"/>
             </div>`
           } else if(fileExt === '.mp4'){
-            html += `<div class="item media video">
+            banners += `<div class="item media video">
               <div class="label">${file}</div>
               <div class="video-container">
                 <video width="100%" height="600" loop mute autoplay>
@@ -81,7 +95,10 @@ app.get('*', (req, res) => {
       });
 
       // close "wrapper"
-      html += `</div>`
+      html += `<div class="item button-holder">${buttons}</div>
+      <div class="banner-holder">${banners}</div>
+      </div>
+      `
       res.send(html);
     }
   });
